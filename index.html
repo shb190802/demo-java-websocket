@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+<script>
+var ws = new WebSocket("ws://localhost:8080/websocket/websocket");
+
+ws.onerror = function(){
+  console.log("ERROR") ;
+}
+ws.onopen = function(){
+  console.log("OPEN") ;
+}
+ws.oncolse = function(){
+  console.log("CLOSE") ;
+}
+ws.onmessage = function(e){
+  console.log(e.data) ;
+}
+window.onbeforeunload = function(){
+  ws.close();
+}
+setTimeout(function(){
+	ws.send("hello");
+},30000);
+</script>
+</body>
+</html>
